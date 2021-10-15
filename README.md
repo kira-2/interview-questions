@@ -7,9 +7,16 @@
 | - [x] | 1   | [Что такое singleton](#1)                                                           |
 | - [ ] | 2   | [Есть ли ссылки у класса и у строк / Классы и строки являются ссылочным типом?](#2) |
 
-- [ x ]
-- [x]
-- [-]
+| Task           | Time required | Assigned to   | Current Status | Finished | 
+|----------------|---------------|---------------|----------------|-----------|
+| Calendar Cache | > 5 hours  |  | in progress | - [x] ok?
+| Object Cache   | > 5 hours  |  | in progress | [x] item1<br/>[ ] item2
+| Object Cache   | > 5 hours  |  | in progress | <ul><li>- [x] item1</li><li>- [ ] item2</li></ul>
+| Object Cache   | > 5 hours  |  | in progress | <ul><li>[x] item1</li><li>[ ] item2</li></ul>
+
+
+- [x] works
+- [x] works too
 
 ## Есть ли ссылки у класса и у строк / Классы и строки являются ссылочным типом? <a id="2"></a>
 
