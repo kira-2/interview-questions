@@ -1,37 +1,8 @@
-class Point {
-  constructor(x, y) {
-    // Инициализация объекта
-    this.x = x;
-    this.y = y;
-  }
+const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+const array3 = array1.concat(array2);
 
-  getXY() {
-    return `x: ${this.x},  y: ${this.y}`;
-  }
-}
-
-const a = new Point(6, 10); // { x: 6, y: 10 }
-
-a.getXY(); // x: 6, y: 10
-
-// Класс-наследник (субкласс, подкласс)
-class Point3d extends Point {
-  constructor(x, y, z) {
-    // Вызов конструктора суперкласса
-    super(x, y);
-    // Продолжение инициализации объекта
-    this.z = z;
-  }
-
-  getXYZ() {
-    return `${super.getXY()}, z: ${this.z}`;
-  }
-}
-
-const b = new Point3d(0, 0, 20);
-
-b.getXY(); // x: 0, y: 0
-b.getXYZ(); // x: 0,  y: 0, z: 20
+console.log(array3);
 
 // протокол, как закрыть всплывающее окно в реакте,  Socket
 
