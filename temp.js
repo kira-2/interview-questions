@@ -1,8 +1,9 @@
-const array1 = ['a', 'b', 'c'];
-const array2 = ['d', 'e', 'f'];
-const array3 = array1.concat(array2);
+function getAge(...args) {
+  console.log(typeof args);
+  return console.log(args);
+}
 
-console.log(array3);
+getAge(21, 33); //?
 
 // протокол, как закрыть всплывающее окно в реакте,  Socket
 
