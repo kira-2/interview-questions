@@ -39,18 +39,72 @@
 1. [Что такое Функции высшего порядка?](#29)
 1. [Замыкание и его практическая польза?](#30)
 1. [MVC фреймворки и библиотеки?](#31)
-1. [Контекст выполнения?](#32)
+1. [Контекст выполнения](#32)
+1. [Методы `call`, `apply`, `bind`](#33)
 
 <!-- ## <a id="31"></a>
 [`↑ scroll up`](#top) -->
 
-## <a id="32"></a> Контекст выполнения?
+## <a id="33"></a> Методы `call`, `apply`, `bind`
+
+Методы `call()` и `apply()` вызывают функцию с указанным контекстом `this` и предоставленными аргументами.
+
+> функция `call()` принимает список аргументов,  
+> функция `apply()` — одиночный массив аргументов.
+
+```js
+const bill = {
+  tip: 0.1,
+  calculate(dish1, dish2, sum) {
+    return `Ваш обед (${dish1}, ${dish2}) стоит ${sum + sum * this.tip} руб.`;
+  },
+};
+
+const tips = { tip: 0.2 };
+
+const pay = bill.calculate('pizza', 'salad', 1000); // Ваш обед (pizza, salad) стоит 1100 руб.
+
+const payCount2 = bill.calculate.call(tips, ...['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
+const payCount1 = bill.calculate.apply(tips, ['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
+```
+
+`bind()` устанавливает в качестве контекста выполнения `this` предоставленное значение. [[MDN]](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+```js
+const auto = {
+  brand: 'BMW',
+  drive() {
+    return `Заведем наш ${this.brand}`;
+  },
+};
+
+auto.drive(); // Заведем наш BMW
+
+const autoDrive = auto.drive;
+autoDrive(); // Заведем наш undefined.
+
+// В JS значение this определяется тем, каким образом вызвана функция. Cм. как определить значение this — https://habr.com/ru/post/464163/
+
+const motorBike = {
+  brand: 'Suzuki',
+};
+
+const bikeDrive = auto.drive.bind(motorBike);
+bikeDrive(); // Заведем наш Suzuki
+
+const shipDrive = auto.drive.bind({ brand: 'Корабль' });
+shipDrive(); // Заведем наш Корабль
+```
+
+[`↑ scroll up`](#top) -->
+
+## <a id="32"></a> Контекст выполнения <!-- todo ещё есть eval-контекс, см записи -->
 
 Контекст выполнения (execution context) — это понятие в спецификации языка, описывающее окружение, в котором выполняется JS-код.
 
 Виды контекста в JS:
 
-1. **Глобальный контекст**. Создаётся при запуске скрипта. Предоставляет глобальный объект и ключевое слово `this`. В браузере глобальный объект и `this` являются `window` (в Node.js — `global`).
+1. **Глобальный контекст**. Создаётся при запуске скрипта. Предоставляет глобальный объект и ключевое слово `this`. В браузере глобальный объект и `this` являются `window`, в Node.js — `global`.
 1. **Контекст выполнения вызова**. Каждый раз, когда вызывается функция, для неё создаётся новый контекст — собственный для каждой функции.
 
 ![execution-context](src/img/execution-context.png)
