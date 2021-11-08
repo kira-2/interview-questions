@@ -47,7 +47,7 @@
 
 ## <a id="33"></a> Методы `call`, `apply`, `bind`
 
-Методы `call()` и `apply()` вызывают функцию с указанным контекстом `this` и предоставленными аргументами.
+Методы `call()` и `apply()` **вызывают** функцию с указанным контекстом `this` и предоставленными аргументами.
 
 > функция `call()` принимает список аргументов,  
 > функция `apply()` — одиночный массив аргументов.
@@ -62,13 +62,13 @@ const bill = {
 
 const tips = { tip: 0.2 };
 
-const pay = bill.calculate('pizza', 'salad', 1000); // Ваш обед (pizza, salad) стоит 1100 руб.
+bill.calculate('pizza', 'salad', 1000); // Ваш обед (pizza, salad) стоит 1100 руб.
 
-const payCount2 = bill.calculate.call(tips, ...['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
-const payCount1 = bill.calculate.apply(tips, ['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
+bill.calculate.call(tips, ...['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
+bill.calculate.apply(tips, ['pizza', 'salad', 1000]); // Ваш обед (pizza, salad) стоит 1200 руб.
 ```
 
-`bind()` устанавливает в качестве контекста выполнения `this` предоставленное значение. [[MDN]](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+`bind()` **устанавливает** в качестве контекста выполнения `this` предоставленное значение. [[MDN]](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ```js
 const auto = {
